@@ -1,0 +1,35 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 71.5%;
+}
+
+.content {
+
+}
+
+.header {
+
+}
+
+.body {
+
+}
+
+.action {
+
+}
+
+.triangle {
+    background: url("../img/bigTriangle.png") no-repeat;
+    width: 1054px;
+    height: calc(100vh - 54px);
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
