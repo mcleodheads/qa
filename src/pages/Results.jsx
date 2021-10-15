@@ -1,11 +1,8 @@
 import React from 'react';
+import ResultsScreen from "../components/ResultsScreen";
 
 const Results = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <ResultsScreen />
 };
 
 export default Results;

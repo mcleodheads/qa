@@ -1,0 +1,196 @@
+.wrapper {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+}
+
+.container {
+    width: 71.5%;
+}
+
+.description {
+
+}
+
+.header {
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 32px;
+    line-height: 36px;
+    color: #15191D;
+}
+
+.body {
+    margin-top: 50px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 150%;
+    color: #44474A;
+}
+
+.actions {
+    margin-top: 60px;
+}
+
+.results {
+
+}
+
+.info {
+
+}
+
+.bugs {
+
+}
+
+.cases {
+    margin-top: 8px;
+}
+
+.counters {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-top: 20px;
+}
+
+.bugsFinded {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.bugsCounterMore {
+    margin-left: 5px;
+
+}
+
+.casesFinded {
+    margin-left: 25px;
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    color: #000000;
+}
+
+.casesCounterMore {
+    margin-left: 5px;
+}
+
+.form_wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.form {
+
+}
+
+.inputs {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.btns {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: 15px;
+}
+
+.approve {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 15px;
+
+    width: 102px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #007BFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.approveInner {
+    width: 72px;
+    height: 20px;
+    font-family: Roboto, sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: flex-end;
+    color: #007BFF;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0px 10px;
+}
+
+.decline {
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 7px 15px;
+    width: 93px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #DD2629;
+    box-sizing: border-box;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    margin: 0 8px;
+}
+
+.declineInner {
+    font-family: Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+    display: flex;
+    align-items: flex-end;
+    color: #DD2629;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    margin: 0 10px;
+}
+
+.answers {
+    margin-left: 137px;
+}
+
+.typo {
+
+}
+
+.triangleDecs {
+
+}
+
+.values {
+
+}
+
+.triangleImg {
+
+}

@@ -1,11 +1,8 @@
 import React from 'react';
+import GameScreen from "../components/GameScreen";
 
 const Game = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <GameScreen />
 };
 
 export default Game;
