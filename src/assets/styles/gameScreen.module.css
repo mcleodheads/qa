@@ -35,6 +35,10 @@
 
 .actions {
     margin-top: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
 }
 
 .results {
@@ -87,7 +91,9 @@
 .form_wrapper {
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    align-items: baseline;
+    width: 100%;
+
 }
 
 .form {
@@ -176,7 +182,18 @@
 }
 
 .answers {
+    height: 100%;
     margin-left: 137px;
+    display: flex;align-items: flex-start;
+    justify-content: center;
+}
+
+.error {
+    font-size: 14px;
+    line-height: 140%;
+    display: flex;
+    align-items: center;
+    color: #DD2629;
 }
 
 .typo {

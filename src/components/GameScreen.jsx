@@ -34,7 +34,10 @@ const GameScreen = () => {
         const c = parseInt(tr[2])
 
         switch (Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c)) {
+
             case true: {
+                console.log(Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c))
+
                 const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2)
                 const side = Math.pow(c, 2).toFixed(2)
                 if (a + b < c) {
@@ -109,10 +112,22 @@ const GameScreen = () => {
             }
             case false: {
                 if (sideA.length === 0 && sideB.length === 0 && sideC.length === 0) {
-                    return console.log('Empty fields')
+                    const newData = {
+                        error: 'Заполните все поля',
+                    }
+                    setData(newData)
+                    setVisible(true)
+                    setInvalidForm(true)
+                    break
                 }
                 if ((sideA.length === 0 || sideB.length === 0) && sideC.length !== 0) {
-                    return console.log('Complete all fields (A/B empty)')
+                    const newData = {
+                        error: 'Задайте все стороны',
+                    }
+                    setData(newData)
+                    setVisible(true)
+                    setInvalidForm(true)
+                    break
                 }
                 if (sideA.length > 0 && sideB.length > 0 && sideC.length > 0) {
                     return console.log('Invalid format (strings)')
@@ -124,6 +139,7 @@ const GameScreen = () => {
                         sides: {sideA, sideB, sideC},
                     }
                     setData(newData)
+                    setVisible(true)
                     break
                 }
                 break
@@ -207,7 +223,7 @@ const GameScreen = () => {
                                     <>
                                         {
                                             invalidForm ? (
-                                                <div>ERROR:
+                                                <div className={st.error}>
                                                     {data.error}
                                                 </div>
                                             ) : (

@@ -11,6 +11,7 @@ const GameInput = (props) => {
                 value={props.sideValue}
                 className={st.input}
                 type={'text'}
+                required={props.side === 'C'}
                 onChange={e => props.setSide(e.target.value)}
                 placeholder={'Введите значение'}
             />
