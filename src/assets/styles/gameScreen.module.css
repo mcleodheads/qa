@@ -239,7 +239,9 @@
 }
 
 .triangleDecs {
-
+    font-size: 14px;
+    line-height: 140%;
+    color: #007BFF;
 }
 
 .values {
@@ -247,5 +249,5 @@
 }
 
 .triangleImg {
-
+    margin-top: 20px;
 }

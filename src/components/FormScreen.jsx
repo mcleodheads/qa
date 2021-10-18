@@ -1,9 +1,13 @@
-import React from 'react';
+import * as React from 'react';
 import st from '../assets/styles/formScreen.module.css'
 import GameInput from "./GameInput";
 import Recaptcha from 'react-recaptcha'
 
 const FormScreen = () => {
+    const [dateStart, setDateStart] = React.useState('')
+    const [dateEnd, setDateEnd] = React.useState('')
+    const [phoneNumber, setPhoneNumber] = React.useState('')
+    const [email, setEmail] = React.useState('')
     return (
         <div className={st.wrapper}>
             <div className={st.container}>
@@ -111,7 +115,6 @@ const FormScreen = () => {
                                         </select>
                                     </div>
                                 </div>
-
                             </div>
                             <div className={st.date}>
                                 <div className={st.reqHeader}>
@@ -119,12 +122,16 @@ const FormScreen = () => {
                                 </div>
                                 <div className={st.inputs}>
                                     <GameInput
+                                        type={'date'}
                                         required
+                                        setSide={setDateStart}
                                         side={'Дата начала практики '}
                                         placeholder={'Выберите дату начала'}
                                     />
                                     <GameInput
+                                        type={'date'}
                                         required
+                                        setSide={setDateEnd}
                                         side={'Дата окончания практики '}
                                         placeholder={'Выберите дату окончания'}
                                     />
@@ -137,12 +144,16 @@ const FormScreen = () => {
                                 <div className={st.inputs}>
                                     <GameInput
                                         required
-                                        side={'Номер телефона '}
+                                        type={'tel'}
+                                        setSide={setPhoneNumber}
+                                        side={'Номер телефона'}
                                         placeholder={'Введите номер телефона'}
                                     />
                                     <GameInput
                                         required
-                                        side={'E-mail '}
+                                        setSide={setEmail}
+                                        type={'email'}
+                                        side={'E-mail'}
                                         placeholder={'Введите E-mail'}
                                     />
                                 </div>

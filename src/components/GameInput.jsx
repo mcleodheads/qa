@@ -8,9 +8,10 @@ const GameInput = (props) => {
                 {props.side}{props.required ? <span className={st.redStar}>*</span> : null}
             </label>
             <input
+                aria-required={props.required}
                 value={props.sideValue}
                 className={st.input}
-                type={'text'}
+                type={props.type}
                 required={props.side === 'C'}
                 onChange={e => props.setSide(e.target.value)}
                 placeholder={props.placeholder}
