@@ -1,18 +1,30 @@
 import * as React from 'react';
-import {useHistory, Link} from "react-router-dom";
+import {Link, useLocation} from "react-router-dom";
 import st from '../assets/styles/header.module.css'
-import {HOME_ROUTE} from "../utils/paths";
+import {FORM_ROUTE, GAME_ROUTE, HOME_ROUTE, RESULTS_ROUTE} from "../utils/paths";
 
 const Header = () => {
-    const history = useHistory() // history.location.pathname
     const [isVisible, setVisible] = React.useState(true)
+    const location = useLocation()
 
-    // React.useEffect(() => {
-    //     history.listen((location) => {
-    //         location.pathname === '/' ? setVisible(true) : setVisible(false)
-    //         location.pathname === '/triangles' ? setVisible(true) : setVisible(false)
-    //     })
-    // }, [])
+    React.useEffect(() => {
+        switch (location.pathname) {
+            case HOME_ROUTE:
+                setVisible(false)
+                break
+            case GAME_ROUTE:
+                setVisible(true)
+                break
+            case RESULTS_ROUTE:
+                setVisible(true)
+                break
+            case FORM_ROUTE:
+                setVisible(false)
+                break
+            default:
+                break
+        }
+    }, [location.pathname])
 
     return (
         <div className={st.wrapper}>

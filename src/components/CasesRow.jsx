@@ -1,42 +1,25 @@
 import React from 'react';
 import st from '../assets/styles/casesRow.module.css'
 
-const CasesRow = () => {
+const CasesRow = ({cases}) => {
+
+    const renderLoop = () => {
+        let line = []
+        for (let i = 0; i <= 11; i++) {
+            line.push(
+                <span
+                    key={i}
+                    className={`${st.case} ${cases[i] ? st.active : st.inactive}`}>
+                    {cases[i] ? (cases[i]) : ('??? ?? ???')}
+                </span>
+            )
+        }
+        return line
+    }
+
     return (
-        <div>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
-            <span className={st.case}>
-                Кейс - ??? ?? ???
-            </span>
+        <div className={st.wrapper}>
+            {renderLoop()}
         </div>
     );
 };

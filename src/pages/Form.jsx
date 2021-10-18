@@ -1,11 +1,8 @@
 import React from 'react';
+import FormScreen from "../components/FormScreen";
 
 const Form = () => {
-    return (
-        <div>
-            
-        </div>
-    );
+    return <FormScreen />
 };
 
 export default Form;

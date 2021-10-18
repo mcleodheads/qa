@@ -1,11 +1,33 @@
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
 .bug {
-    width: 97px;
-    height: 20px;
+    width: 270px;
+    height: 34px;
     font-family: Roboto, sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 14px;
-    line-height: 20px;
+    line-height: 30px;
     color: #000000;
-    margin: 0 8px 0 0;
+    margin: 0 48px 12px 0;
+    background: #C4C4C4;
+}
+
+.active {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #F38677;
+}
+
+.inactive {
+    background: #C4C4C4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

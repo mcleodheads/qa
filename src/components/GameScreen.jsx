@@ -4,12 +4,13 @@ import GameInput from './GameInput'
 import BugsRow from './BugsRow'
 import CasesRow from './CasesRow'
 import {useHistory} from "react-router-dom";
-import {RESULTS_ROUTE} from "../utils/paths";
+import {FORM_ROUTE, RESULTS_ROUTE} from "../utils/paths";
 import equilateralTr from '../assets/img/Triangles/equilateralTr.png'
 import isoscelesTr from '../assets/img/Triangles/isoscelesTr.png'
 import rightTr from '../assets/img/Triangles/rightTr.png'
 import angledTr from '../assets/img/Triangles/angledTr.png'
 import errorC from '../assets/img/Triangles/errorC.png'
+import tupougolniy from '../assets/img/Triangles/tupougolniy.png'
 
 const GameScreen = () => {
     const history = useHistory();
@@ -22,7 +23,31 @@ const GameScreen = () => {
 
     const [data, setData] = React.useState({});
 
+    const [cases, setCases] = React.useState([])
+    const [bugs, setBugs] = React.useState([])
+
+    React.useEffect(() => {
+        if (cases.length === 12 && bugs.length === 4) {
+            history.push(FORM_ROUTE)
+        }
+    }, [history, cases, bugs])
+
     function getTriangle() {
+        setVisible(false)
+        setInvalidForm(false)
+
+        function filteredCases(str) {
+            if (!cases.includes(str)) {
+                setCases(prev => [...prev, str])
+            }
+        }
+
+        function filteredBugs(str) {
+            if (!bugs.includes(str)) {
+                setBugs(prev => [...prev, str])
+            }
+        }
+
         const sides = [
             sideA,
             sideB,
@@ -32,120 +57,131 @@ const GameScreen = () => {
         const a = parseInt(tr[0])
         const b = parseInt(tr[1])
         const c = parseInt(tr[2])
+        const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2);
+        const side = Math.pow(c, 2).toFixed(2)
 
-        switch (Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c)) {
-
-            case true: {
-                console.log(Number.isInteger(a) && Number.isInteger(b) && Number.isInteger(c))
-
-                const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2)
-                const side = Math.pow(c, 2).toFixed(2)
-                if (a + b < c) {
-                    const newData = {
-                        error: 'Не выполнились условия треугольника',
-                    }
-                    setData(newData)
-                    setVisible(true)
-                    setInvalidForm(true)
-                    break
-                }
-                if (a.toString.length > 10 || b.toString.length > 10 || c.toString.length > 10) {
-                    console.log('Big numbers')
-                }
-                if ((a % 1 !== 0) || (b % 1 !== 0) || (c % 1 !== 0)) {
-                    console.log('BUG side lines height is float')
-                }
-                if (a === b && a === c) {
-                    if (a === 0 && b === 0 && c === 0) {
-                        return console.log('BUG side lines height is 0')
-                    }
-                    console.log('Равносторонний')
-                    const newTriangle = {
-                        header: 'Это равносторонний треугольник',
-                        sides: {sideA, sideB, sideC},
-                        img: equilateralTr,
-                    }
-                    setData(newTriangle)
-                    setVisible(true)
-                    break
-                }
-                if (a === b || a === c || b === c) {
-                    const newTriangle = {
-                        header: 'Это равнобедренный треугольник',
-                        sides: {sideA, sideB, sideC},
-                        img: isoscelesTr,
-                    }
-                    setData(newTriangle)
-                    setVisible(true)
-                    break
-                }
-                if (sum === side) {
-                    const newTriangle = {
-                        header: 'Это прямоугольный треугольник',
-                        sides: {sideA, sideB, sideC},
-                        img: rightTr,
-                    }
-                    setData(newTriangle)
-                    setVisible(true)
-                    break
-                }
-                if (sum < side) {
-                    const newTriangle = {
-                        header: 'Это тупоугольный треугольник',
-                        sides: {sideA, sideB, sideC},
-                    }
-                    setData(newTriangle)
-                    setVisible(true)
-                    break
-                }
-                if (sum > side) {
-                    const newTriangle = {
-                        header: 'Это остроугольный треугольник',
-                        sides: {sideA, sideB, sideC},
-                        img: angledTr,
-                    }
-                    setData(newTriangle)
-                    setVisible(true)
-                    break
-                }
-                break
+        if (tr[0].length === 0 && tr[1].length === 0 && tr[2].length === 0) {
+            setData({
+                error: 'Задайте все стороны'
+            })
+            setInvalidForm(true)
+            setVisible(true)
+            return filteredCases('Все поля пустые')
+        }
+        if ((sideA.length === 0 || sideB.length === 0) && sideC.length !== 0) {
+            setData({
+                error: 'Задайте все стороны'
+            })
+            setInvalidForm(true)
+            setVisible(true)
+            return filteredCases('Не все поля заданы')
+        }
+        if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+            if (sideA.length >= 10 || sideB.length >= 10 || sideC.length >= 10) {
+                filteredCases('Большие числа')
             }
-            case false: {
-                if (sideA.length === 0 && sideB.length === 0 && sideC.length === 0) {
-                    const newData = {
-                        error: 'Заполните все поля',
-                    }
-                    setData(newData)
-                    setVisible(true)
-                    setInvalidForm(true)
-                    break
-                }
-                if ((sideA.length === 0 || sideB.length === 0) && sideC.length !== 0) {
-                    const newData = {
-                        error: 'Задайте все стороны',
-                    }
-                    setData(newData)
-                    setVisible(true)
-                    setInvalidForm(true)
-                    break
-                }
-                if (sideA.length > 0 && sideB.length > 0 && sideC.length > 0) {
-                    return console.log('Invalid format (strings)')
-                }
-                if (sideA.length > 0 && sideB.length > 0 && sideC.length === 0) {
-                    const newData = {
-                        header: 'C field is empty',
-                        img: errorC,
-                        sides: {sideA, sideB, sideC},
-                    }
-                    setData(newData)
-                    setVisible(true)
-                    break
-                }
-                break
+            if (sideA.includes('.') || sideB.includes('.') || sideC.includes('.')) {
+                return filteredBugs('Нецелые числа')
             }
-            default:
-                break
+            if (a === 0 || b === 0 || c === 0) {
+                filteredBugs('Треугольник со сторонами 0')
+                setData({
+                    header: 'Равносторонний треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: equilateralTr
+                })
+                setVisible(true)
+            }
+            if (a + b < c) {
+                setInvalidForm(false)
+                setVisible(false)
+                return filteredCases('Не выполнились условия треугольника')
+            }
+
+            if (a === b && a === c) {
+                setData({
+                    header: 'Равносторонний треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: equilateralTr
+                })
+                setVisible(true)
+                return filteredCases('Равносторонний треугольник')
+            }
+            if (a === b || a === c || b === c) {
+                setData({
+                    header: 'Равнобедренный треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: isoscelesTr
+                })
+                setVisible(true)
+                return filteredCases('Равнобедренный треугольник')
+            }
+            if (sum === side) {
+                setData({
+                    header: 'Прямоугольный треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: rightTr
+                })
+                setVisible(true)
+                setInvalidForm(false)
+                return filteredCases('Прямоугольный треугольник')
+            }
+            if (sum < side) {
+                setData({
+                    header: 'Тупоугольный треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: tupougolniy
+                })
+                setVisible(true)
+                setInvalidForm(false)
+                return filteredCases('Тупоугольный треугольник')
+            }
+            if (sum > side) {
+                setData({
+                    header: 'Остроугольный треугольник',
+                    sides: {sideA, sideB, sideC},
+                    img: angledTr
+                })
+                setVisible(true)
+                setInvalidForm(false)
+                return filteredCases('Остроугольный треугольник')
+            }
+        }
+
+        if ((sideA.length !== 0 || sideB.length !== 0) && sideC.length === 0) {
+            setData({
+                error: 'Это не треугольник',
+                sides: {sideA, sideB, sideC},
+                img: errorC
+            })
+            setInvalidForm(true)
+            setVisible(true)
+            return filteredBugs('Форма не валидирует поле С')
+        }
+
+        if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
+                return filteredCases('XSS - уязвимость')
+            }
+            const regScript = new RegExp('<[sS][cC][rR][iI][pP][tT]>')
+            if (regScript.test(sideA) || regScript.test(sideB) || regScript.test(sideC)) {
+                return filteredBugs('XSS - уязвимость')
+            }
+            if (sideA.includes('select') ||
+                sideA.includes('or') ||
+                sideA.includes('where') ||
+                sideB.includes('select') ||
+                sideB.includes('or') ||
+                sideB.includes('where') ||
+                sideC.includes('select') ||
+                sideC.includes('or') ||
+                sideC.includes('where')) {
+                return filteredCases('SQL-инъекция')
+            }
+        }
+        if (a.toString.length !== 0 || b.toString.length !== 0 || c.toString.length !== 0) {
+            setVisible(false)
+            return filteredCases('Строки в полях')
         }
     }
 
@@ -176,38 +212,66 @@ const GameScreen = () => {
                     <div className={st.results}>
                         <div className={st.info}>
                             <div className={st.bugs}>
-                                <BugsRow/>
+                                <BugsRow bugs={bugs}/>
                             </div>
                             <div className={st.cases}>
-                                <CasesRow/>
+                                <CasesRow cases={cases}/>
                             </div>
                         </div>
                         <div className={st.counters}>
                             <div className={st.bugsFinded}>
                                 Вы нашли ошибок
-                                <span className={st.bugsCounterMore}>0</span>
+                                <span className={st.bugsCounterMore}>{bugs.length}</span>
                             </div>
                             <div className={st.casesFinded}>
                                 Попробовали кейсов
-                                <span className={st.casesCounterMore}>0</span>
+                                <span className={st.casesCounterMore}>{cases.length}</span>
                             </div>
                         </div>
                     </div>
                     <div className={st.form_wrapper}>
                         <div className={st.form}>
                             <div className={st.inputs}>
-                                <GameInput side={'A'} sideValue={sideA} setSide={setSideA}/>
-                                <GameInput side={'B'} sideValue={sideB} setSide={setSideB}/>
-                                <GameInput side={'C'} sideValue={sideC} setSide={setSideC}/>
+                                <GameInput
+                                    side={'Сторона A'}
+                                    sideValue={sideA}
+                                    setSide={setSideA}
+                                    placeholder={'Введите значение'}
+                                />
+                                <GameInput
+                                    side={'Сторона B'}
+                                    sideValue={sideB}
+                                    setSide={setSideB}
+                                    placeholder={'Введите значение'}
+                                />
+                                <GameInput
+                                    side={'Сторона C'}
+                                    sideValue={sideC}
+                                    setSide={setSideC}
+                                    placeholder={'Введите значение'}
+                                />
                             </div>
                             <div className={st.btns}>
-                                <button
-                                    onClick={getTriangle}
-                                    className={st.approve}>
-                                <span className={st.approveInner}>
-                                    Проверить
-                                </span>
-                                </button>
+                                {
+                                    bugs.length === 4 && cases.length === 12 ? (
+                                        <button
+                                            onClick={() => history.push(FORM_ROUTE)}
+                                            className={st.push}>
+                                            <span className={st.approveInner}>
+                                            Дальше
+                                            </span>
+                                        </button>
+                                    ) : (
+                                        <button
+                                            onClick={getTriangle}
+                                            className={st.approve}>
+                                            <span className={st.approveInner}>
+                                                Проверить
+                                            </span>
+                                        </button>
+                                    )
+                                }
+
                                 <button
                                     onClick={() => history.push(RESULTS_ROUTE)}
                                     className={st.decline}>
@@ -223,8 +287,26 @@ const GameScreen = () => {
                                     <>
                                         {
                                             invalidForm ? (
-                                                <div className={st.error}>
-                                                    {data.error}
+                                                <div>
+                                                    <div className={st.error}>
+                                                        {data.error}
+                                                    </div>
+                                                    {
+                                                        data.sides ? (
+                                                            <div className={st.values}>
+                                                                A= {data.sides?.sideA};
+                                                                B= {data.sides?.sideB};
+                                                                C= {data.sides?.sideC};
+                                                            </div>
+                                                        ) : null
+                                                    }
+                                                    {
+                                                        data.img ? (
+                                                            <div className={st.triangleImg}>
+                                                                <img src={data.img} alt="errorC"/>
+                                                            </div>
+                                                        ) : null
+                                                    }
                                                 </div>
                                             ) : (
                                                 <div>

@@ -18,10 +18,14 @@
     margin: 5px 0;
 }
 
+.redStar {
+    color: #DD2629;
+}
+
 .input {
+    width: 100%;
     display: flex;
     padding: 8px 10px 8px 15px;
-    width: 212px;
     height: 36px;
     background: #FFFFFF;
     border: 1px solid rgba(21, 25, 29, 0.3);
@@ -32,7 +36,6 @@
     align-self: stretch;
     flex-grow: 0;
     margin: 5px 0;
-
     color: #15191D;
     font-size: 14px;
     line-height: 140%;

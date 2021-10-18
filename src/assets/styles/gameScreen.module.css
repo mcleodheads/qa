@@ -54,14 +54,12 @@
 }
 
 .cases {
-    margin-top: 8px;
+    margin-top: 40px;
 }
 
 .counters {
     display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    margin-top: 20px;
+    margin-top: 63px;
 }
 
 .bugsFinded {
@@ -69,11 +67,21 @@
     font-size: 14px;
     line-height: 20px;
     color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .bugsCounterMore {
     margin-left: 5px;
-
+    border-radius: 50%;
+    background: #007BFF;
+    color: #FFFFFF;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .casesFinded {
@@ -82,10 +90,21 @@
     font-size: 14px;
     line-height: 20px;
     color: #000000;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 }
 
 .casesCounterMore {
     margin-left: 5px;
+    border-radius: 50%;
+    background: #007BFF;
+    color: #FFFFFF;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .form_wrapper {
@@ -93,6 +112,8 @@
     justify-content: flex-start;
     align-items: baseline;
     width: 100%;
+    border-top: 1px solid #DD2629;
+    margin-top: 15px;
 
 }
 
@@ -112,6 +133,7 @@
     align-items: center;
     justify-content: flex-start;
     margin-top: 15px;
+    margin-bottom: 80px;
 }
 
 .approve {
@@ -121,6 +143,22 @@
     align-items: center;
     padding: 7px 15px;
 
+    width: 102px;
+    height: 34px;
+    background: #FFFFFF;
+    border: 1px solid #007BFF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.push {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 102px;
     height: 34px;
     background: #FFFFFF;
