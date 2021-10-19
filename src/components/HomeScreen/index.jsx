@@ -1,9 +1,9 @@
 import React from 'react';
-import st from '../assets/styles/homeScreen.module.css'
-import {GAME_ROUTE} from "../utils/paths";
+import st from './homeScreen.module.css'
+import {GAME_ROUTE} from "../../router/paths";
 import {useHistory} from "react-router-dom";
 
-const HomeScreen = () => {
+export const HomeScreen = () => {
     const history = useHistory()
 
     return (
@@ -30,4 +30,3 @@ const HomeScreen = () => {
     );
 };
 
-export default HomeScreen;

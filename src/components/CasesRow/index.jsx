@@ -1,15 +1,17 @@
 import React from 'react';
-import st from '../assets/styles/casesRow.module.css'
+import st from './casesRow.module.css'
+import classNames from "classnames/bind";
 
-const CasesRow = ({cases}) => {
+export const CasesRow = ({cases}) => {
 
     const renderLoop = () => {
         let line = []
         for (let i = 0; i <= 11; i++) {
+            const rowClass = classNames(st.case, {[st.active]: cases[i], [st.inactive]: !cases[i]})
             line.push(
                 <span
                     key={i}
-                    className={`${st.case} ${cases[i] ? st.active : st.inactive}`}>
+                    className={rowClass}>
                     {cases[i] ? (cases[i]) : ('??? ?? ???')}
                 </span>
             )
@@ -23,5 +25,3 @@ const CasesRow = ({cases}) => {
         </div>
     );
 };
-
-export default CasesRow;

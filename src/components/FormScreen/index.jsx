@@ -1,22 +1,88 @@
 import * as React from 'react';
-import st from '../assets/styles/formScreen.module.css'
-import GameInput from "./GameInput";
-import Recaptcha from 'react-recaptcha'
+import {useState} from "react";
+import st from './formScreen.module.css'
+import {GameInput} from "../GameInput";
+import axios from "axios";
 
-const FormScreen = () => {
-    const [dateStart, setDateStart] = React.useState('')
-    const [dateEnd, setDateEnd] = React.useState('')
-    const [phoneNumber, setPhoneNumber] = React.useState('')
-    const [email, setEmail] = React.useState('')
+export const FormScreen = () => {
+    const [nameTrainee, setNameTrainee] = useState('');
+    const [surnameTrainee, setSurnameTrainee] = useState('');
+    const [patronymicTrainee, setPatronymicTrainee] = useState('');
+    const [universityFullName, setUniversityFullName] = useState();
+    const [instituteFullName, setInstituteFullName] = useState();
+    const [specialityFullName, setSpecialityFullName] = useState();
+    const [competenceName, setCompetenceName] = useState();
+    const [dateStart, setDateStart] = useState('');
+    const [dateEnd, setDateEnd] = useState('');
+    const [phoneNumberTrainee, setPhoneNumberTrainee] = useState('');
+    const [emailTrainee, setEmailTrainee] = useState('');
+    const [policyCheckbox, setPolicyCheckbox] = useState(false);
+
+    const handleSubmit = () => {
+        const newData = {
+            nameTrainee,
+            surnameTrainee,
+            patronymicTrainee,
+            universityFullName,
+            instituteFullName,
+            specialityFullName,
+            competenceName,
+            dateStart,
+            dateEnd,
+            phoneNumberTrainee,
+            emailTrainee,
+        }
+        if (policyCheckbox) {
+            const headers = {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer cRL82peZNMsLBKPrDkHVi7b12CAKLWZY',
+            }
+            axios.post('/api/request/fromMMTR', newData, {
+                    headers: headers,
+                }
+            )
+                .then((response) => console.log(response))
+                .catch((error) => console.log(error))
+        }
+    }
+
+    const compet = () => {
+        const list = []
+        if (competenceName === 'Разработка') {
+            list.push(
+                <option key={'Java'} value="Java">Java</option>,
+                <option key={'AngularJS'} value="AngularJS">AngularJS</option>,
+                <option key={'PHP'} value="PHP">PHP</option>,
+                <option key={'ReactJS'} value="ReactJS">ReactJS</option>,
+                <option key={'.NET'} value=".NET">.NET</option>,
+                )
+        }
+        if (competenceName === 'Тестирование') {
+            list.push(
+                <option key={'Ручное тестирование'} value="Ручное тестирование">Ручное тестирование</option>,
+                <option key={'Автотесты'} value="Автотесты">Автотесты</option>,
+            )
+        }
+        return list
+    }
+
     return (
         <div className={st.wrapper}>
             <div className={st.container}>
                 <div className={st.description}>
                     <div className={st.descBlock}>
-                        ММТР приглашает студентов IT-специальностей средних специальных и высших учебных заведений Костромы и других городов пройти учебную практику, а также выполнить подготовку дипломного проекта в нашей компании. Вы будете участвовать в реальных проектах под руководством наших ведущих разработчиков и тестировщиков. График работы на практике гибкий и позволяет совмещать подготовку к экзаменам, учебу и занятость в офисе.
+                        ММТР приглашает студентов IT-специальностей средних специальных и высших учебных заведений
+                        Костромы и других городов пройти учебную практику, а также выполнить подготовку дипломного
+                        проекта в нашей компании. Вы будете участвовать в реальных проектах под руководством наших
+                        ведущих разработчиков и тестировщиков. График работы на практике гибкий и позволяет совмещать
+                        подготовку к экзаменам, учебу и занятость в офисе.
                     </div>
                     <div className={st.descBlock}>
-                        В 2017-2018 учебном году в компании ММТР прошли практику 60 студентов 2-4 курсов нескольких факультетов и специальностей КГУ (Физмат, ИАСТ, Бизнес-информатика), Костромского политехнического колледжа, Костромского энергетического техникума имени Ф. В. Чижова, а также 1 студент из Ивановского энергетического университета (Прикладная информатика). 8 выпускников и 3 студента 3 курса были приняты на работу.
+                        В 2017-2018 учебном году в компании ММТР прошли практику 60 студентов 2-4 курсов нескольких
+                        факультетов и специальностей КГУ (Физмат, ИАСТ, Бизнес-информатика), Костромского
+                        политехнического колледжа, Костромского энергетического техникума имени Ф. В. Чижова, а также 1
+                        студент из Ивановского энергетического университета (Прикладная информатика). 8 выпускников и 3
+                        студента 3 курса были приняты на работу.
                     </div>
                 </div>
                 <div className={st.formWrapper}>
@@ -27,34 +93,40 @@ const FormScreen = () => {
                         <div className={st.personBlock}>
                             <div className={st.name}>
                                 <GameInput
-                                    side={'Фамилия '}
+                                    setSide={setSurnameTrainee}
+                                    side={'Фамилия'}
                                     required
                                     placeholder={'Введите фамилию'}
                                 />
                                 <GameInput
-                                    side={'Имя '}
+                                    setSide={setNameTrainee}
+                                    side={'Имя'}
                                     required
                                     placeholder={'Введите имя'}
                                 />
                                 <GameInput
-                                    side={'Отчество '}
+                                    setSide={setPatronymicTrainee}
+                                    side={'Отчество'}
                                     required
                                     placeholder={'Введите отчество'}
                                 />
                             </div>
                             <div className={st.education}>
                                 <GameInput
-                                    side={'Учебное заведение '}
+                                    setSide={setUniversityFullName}
+                                    side={'Учебное заведение'}
                                     required
                                     placeholder={'Введите учебное заведение'}
                                 />
                                 <GameInput
-                                    side={'Факультет '}
+                                    setSide={setInstituteFullName}
+                                    side={'Факультет'}
                                     required
                                     placeholder={'Введите факультет'}
                                 />
                                 <GameInput
-                                    side={'Специальность '}
+                                    setSide={setSpecialityFullName}
+                                    side={'Специальность'}
                                     required
                                     placeholder={'Введите специальность'}
                                 />
@@ -74,44 +146,47 @@ const FormScreen = () => {
                                             Желаемое направление деятельности <span className={st.star}>*</span>:
                                         </label>
                                         <select
-                                            defaultValue={'Желаемое направление деятельности'}
+                                            onChange={(e) => setCompetenceName(e.target.value)}
                                             className={st.dropDown}
                                             name="jobs"
-                                            id="jobs"
-                                        >
-                                            <option value="analytics">
-                                                Аналитика
+                                            id="jobs">
+                                            <option value="" disabled selected>
+                                                Выберите желаемое направление
                                             </option>
-                                            <option value="QA">
+                                            <option value="Тестирование">
                                                 Тестирование
                                             </option>
-                                            <option value="Development">
+                                            <option value="Разработка">
                                                 Разработка
+                                            </option>
+                                            <option value="Сопровождение">
+                                                Сопровождение
+                                            </option>
+                                            <option value="Дизайн">
+                                                Дизайн
+                                            </option>
+                                            <option value="Системное администрирование">
+                                                Системное администрирование
+                                            </option>
+                                            <option value="Системный анализ">
+                                                Системный анализ
                                             </option>
                                         </select>
                                     </div>
                                     <div className={st.jobsInput}>
                                         <label
                                             htmlFor="jobs"
-                                            className={st.label}
-                                        >
+                                            className={st.label}>
                                             Желаемая компетенция:
                                         </label>
                                         <select
                                             defaultValue={"Выберите желаемую компетенцию"}
                                             className={st.dropDown}
-                                            name=""
-                                            id=""
-                                        >
-                                            <option value="analytics">
-                                                Аналитика
+                                            >
+                                            <option value="" disabled selected>
+                                                Выберите желаемую компетенцию
                                             </option>
-                                            <option value="QA">
-                                                Тестирование
-                                            </option>
-                                            <option value="Development">
-                                                Разработка
-                                            </option>
+                                            {compet()}
                                         </select>
                                     </div>
                                 </div>
@@ -145,13 +220,13 @@ const FormScreen = () => {
                                     <GameInput
                                         required
                                         type={'tel'}
-                                        setSide={setPhoneNumber}
+                                        setSide={setPhoneNumberTrainee}
                                         side={'Номер телефона'}
                                         placeholder={'Введите номер телефона'}
                                     />
                                     <GameInput
                                         required
-                                        setSide={setEmail}
+                                        setSide={setEmailTrainee}
                                         type={'email'}
                                         side={'E-mail'}
                                         placeholder={'Введите E-mail'}
@@ -161,21 +236,23 @@ const FormScreen = () => {
                         </div>
                         <div className={st.actions}>
                             <div className={st.capcha}>
-                                <Recaptcha
-                                    sitekey=" "
-                                />
+
                             </div>
                             <div className={st.privatePolicy}>
                                 <label className={st.label}>
                                     Политика персональных данных<span className={st.star}>*</span>
                                 </label>
                                 <div>
-                                    <input type="checkbox"/>
+                                    <input type="checkbox" defaultChecked={policyCheckbox} onChange={(e) => setPolicyCheckbox(e.target.checked)}/>
                                     <span>С <a href='/#' className={st.policy}>политикой</a> в отношении обработки персональных данных ознакомлен</span>
                                 </div>
                             </div>
                             <div className={st.btnBlock}>
-                                <button className={st.btn}>
+                                <button
+                                    className={st.btn}
+                                    onClick={handleSubmit}
+                                    disabled={!policyCheckbox}
+                                >
                                     <span className={st.innerBtn}>
                                         Отправить
                                     </span>
@@ -189,4 +266,3 @@ const FormScreen = () => {
     );
 };
 
-export default FormScreen;

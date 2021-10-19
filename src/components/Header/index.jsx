@@ -1,13 +1,14 @@
-import * as React from 'react';
+import React from 'react';
+import {useState, useEffect} from "react";
 import {Link, useLocation} from "react-router-dom";
-import st from '../assets/styles/header.module.css'
-import {FORM_ROUTE, GAME_ROUTE, HOME_ROUTE, RESULTS_ROUTE} from "../utils/paths";
+import st from './header.module.css'
+import {FORM_ROUTE, GAME_ROUTE, HOME_ROUTE, RESULTS_ROUTE} from "../../router/paths";
 
-const Header = () => {
-    const [isVisible, setVisible] = React.useState(true)
+export const Header = () => {
+    const [isVisible, setVisible] = useState(true)
     const location = useLocation()
 
-    React.useEffect(() => {
+    useEffect(() => {
         switch (location.pathname) {
             case HOME_ROUTE:
                 setVisible(false)
@@ -45,5 +46,3 @@ const Header = () => {
         </div>
     );
 };
-
-export default Header;

@@ -96,7 +96,6 @@
     font-size: 14px;
     line-height: 140%;
     margin: 5px 0;
-
 }
 
 .dropDown:focus {
@@ -178,6 +177,11 @@
     flex: none;
     order: 0;
     flex-grow: 0;
+}
+
+.btn:disabled {
+    cursor: not-allowed;
+
 }
 
 .innerBtn {

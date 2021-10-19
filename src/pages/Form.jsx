@@ -1,5 +1,5 @@
 import React from 'react';
-import FormScreen from "../components/FormScreen";
+import {FormScreen} from "../components/FormScreen/index";
 
 const Form = () => {
     return <FormScreen />

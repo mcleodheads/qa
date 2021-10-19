@@ -21,7 +21,7 @@
 
 .triangleImg {
     margin-top: 40px;
-    background-image: url("../img/resultScreenTriangle.png");
+    background-image: url("../../assets/img/resultScreenTriangle.png");
     background-repeat: no-repeat;
     width: 100%;
     height: 512px;
@@ -84,7 +84,7 @@
 }
 
 .footerImg {
-    background-image: url("../img/funnyPic.png");
+    background-image: url("../../assets/img/funnyPic.png");
     width: 100%;
     height: 250px;
     background-position: center;

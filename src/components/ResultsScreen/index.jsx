@@ -1,9 +1,9 @@
 import React from 'react';
-import st from '../assets/styles/resultsScreen.module.css'
+import st from './resultsScreen.module.css'
 import {useHistory} from "react-router-dom";
-import {FORM_ROUTE} from "../utils/paths";
+import {FORM_ROUTE} from "../../router/paths";
 
-const ResultsScreen = () => {
+export const ResultsScreen = () => {
     const history = useHistory();
     return (
         <div className={st.wrapper}>

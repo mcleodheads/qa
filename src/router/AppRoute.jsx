@@ -1,7 +1,7 @@
 import React from 'react';
 import {Switch, Route, Redirect} from 'react-router-dom'
-import {routes} from "../utils/routes";
-import {HOME_ROUTE} from "../utils/paths";
+import {routes} from "./routes";
+import {HOME_ROUTE} from "./paths";
 
 const AppRoute = () => {
     return (

@@ -1,15 +1,17 @@
 import React from 'react';
-import st from '../assets/styles/bugsRow.module.css'
+import st from './bugsRow.module.css'
+import classNames from "classnames/bind";
 
-const BugsRow = ({bugs}) => {
+export const BugsRow = ({bugs}) => {
 
     const renderLoop = () => {
         let line = []
         for (let i = 0; i <= 3; i++) {
+            const rowClass = classNames(st.bug, {[st.active]: bugs[i], [st.inactive]: !bugs[i]})
             line.push(
                 <span
                     key={i}
-                    className={`${st.bug} ${bugs[i] ? st.active : st.inactive}`}>
+                    className={rowClass}>
                     {bugs[i] ? (bugs[i]) : ('??? ?? ???')}
                 </span>
             )
@@ -24,4 +26,4 @@ const BugsRow = ({bugs}) => {
     );
 };
 
-export default BugsRow;
+// export default BugsRow;

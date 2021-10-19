@@ -55,7 +55,7 @@
 }
 
 .triangle {
-    background: url("../img/bigTriangle.png") no-repeat;
+    background: url("../../assets/img/bigTriangle.png") no-repeat;
     width: 1054px;
     height: calc(100vh - 54px);
     position: absolute;

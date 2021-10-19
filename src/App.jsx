@@ -1,7 +1,7 @@
 import './App.css';
-import AppRoute from "./components/AppRoute";
-import Header from "./components/Header";
+import AppRoute from "./router/AppRoute";
 import {useHistory} from "react-router-dom";
+import {Header} from "./components/Header/index";
 
 function App() {
     const history = useHistory()

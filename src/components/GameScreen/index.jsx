@@ -1,32 +1,36 @@
 import * as React from 'react';
-import st from '../assets/styles/gameScreen.module.css'
-import GameInput from './GameInput'
-import BugsRow from './BugsRow'
-import CasesRow from './CasesRow'
+import {useState, useEffect} from "react";
+import st from './gameScreen.module.css'
+import {GameInput} from '../GameInput'
+import {BugsRow} from '../BugsRow'
+import {CasesRow} from '../CasesRow'
 import {useHistory} from "react-router-dom";
-import {FORM_ROUTE, RESULTS_ROUTE} from "../utils/paths";
-import equilateralTr from '../assets/img/Triangles/equilateralTr.png'
-import isoscelesTr from '../assets/img/Triangles/isoscelesTr.png'
-import rightTr from '../assets/img/Triangles/rightTr.png'
-import angledTr from '../assets/img/Triangles/angledTr.png'
-import errorC from '../assets/img/Triangles/errorC.png'
-import tupougolniy from '../assets/img/Triangles/tupougolniy.png'
+import {FORM_ROUTE, RESULTS_ROUTE} from "../../router/paths";
+import equilateralTr from '../../assets/img/Triangles/equilateralTr.png'
+import isoscelesTr from '../../assets/img/Triangles/isoscelesTr.png'
+import rightTr from '../../assets/img/Triangles/rightTr.png'
+import angledTr from '../../assets/img/Triangles/angledTr.png'
+import errorC from '../../assets/img/Triangles/errorC.png'
+import tupougolniy from '../../assets/img/Triangles/tupougolniy.png'
 
-const GameScreen = () => {
+export const GameScreen = () => {
     const history = useHistory();
-    const [sideA, setSideA] = React.useState('');
-    const [sideB, setSideB] = React.useState('');
-    const [sideC, setSideC] = React.useState('');
+    const [sideA, setSideA] = useState('');
+    const [sideB, setSideB] = useState('');
+    const [sideC, setSideC] = useState('');
 
-    const [isVisible, setVisible] = React.useState(false);
-    const [invalidForm, setInvalidForm] = React.useState(false);
+    const [isVisible, setVisible] = useState(false);
+    const [invalidForm, setInvalidForm] = useState(false);
 
-    const [data, setData] = React.useState({});
+    const [data, setData] = useState({});
 
-    const [cases, setCases] = React.useState([])
-    const [bugs, setBugs] = React.useState([])
+    const [cases, setCases] = useState([]);
+    const [bugs, setBugs] = useState([]);
 
-    React.useEffect(() => {
+    const [xxsAttack, setXxsAttack] = useState('');
+    const [isOpen, setOpen] = useState('');
+
+    useEffect(() => {
         if (cases.length === 12 && bugs.length === 4) {
             history.push(FORM_ROUTE)
         }
@@ -161,11 +165,26 @@ const GameScreen = () => {
 
         if (isNaN(a) || isNaN(b) || isNaN(c)) {
             if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
+                let result
+                if (sideA.includes('<script>')) {
+                    result = sideA.split(/[><]/)
+                    setXxsAttack(result[2])
+                }
+                if (sideB.includes('<script>')) {
+                    result = sideB.split(/[><]/)
+                    setXxsAttack(result[2])
+                }
+                if (sideC.includes('<script>')) {
+                    result = sideC.split(/[><]/)
+                    console.log(result)
+                    setXxsAttack(result[2])
+                }
+                setOpen(true)
                 return filteredCases('XSS - уязвимость')
             }
             const regScript = new RegExp('<[sS][cC][rR][iI][pP][tT]>')
             if (regScript.test(sideA) || regScript.test(sideB) || regScript.test(sideC)) {
-                return filteredBugs('XSS - уязвимость')
+                return filteredBugs('XSS - уязвимость (регистр)')
             }
             if (sideA.includes('select') ||
                 sideA.includes('or') ||
@@ -187,6 +206,23 @@ const GameScreen = () => {
 
     return (
         <div className={st.wrapper}>
+            {
+                isOpen ? (
+                    <div className={st.xssAttack}>
+                        <div className={st.header}>
+                            XXS-Атака
+                        </div>
+                        <div className={st.resultOfAttack}>
+                            {xxsAttack}
+                        </div>
+                        <div className={st.attackActions}>
+                            <button className={st.btnAttack} onClick={() => setOpen(false)}>
+                                <span className={st.declineInner}>Закрыть</span>
+                            </button>
+                        </div>
+                    </div>
+                ) : null
+            }
             <div className={st.container}>
                 <div className={st.description}>
                     <div className={st.header}>
@@ -338,4 +374,3 @@ const GameScreen = () => {
     );
 };
 
-export default GameScreen;

@@ -1,5 +1,5 @@
 import React from 'react';
-import ResultsScreen from "../components/ResultsScreen";
+import {ResultsScreen} from "../components/ResultsScreen/index";
 
 const Results = () => {
     return <ResultsScreen />
