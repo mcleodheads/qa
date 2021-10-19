@@ -164,8 +164,8 @@ export const GameScreen = () => {
         }
 
         if (isNaN(a) || isNaN(b) || isNaN(c)) {
+            let result
             if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
-                let result
                 if (sideA.includes('<script>')) {
                     result = sideA.split(/[><]/)
                     setXxsAttack(result[2])
@@ -176,7 +176,6 @@ export const GameScreen = () => {
                 }
                 if (sideC.includes('<script>')) {
                     result = sideC.split(/[><]/)
-                    console.log(result)
                     setXxsAttack(result[2])
                 }
                 setOpen(true)
@@ -184,6 +183,19 @@ export const GameScreen = () => {
             }
             const regScript = new RegExp('<[sS][cC][rR][iI][pP][tT]>')
             if (regScript.test(sideA) || regScript.test(sideB) || regScript.test(sideC)) {
+                if (regScript.test(sideA)) {
+                    result = sideA.split(/[><]/)
+                    setXxsAttack(result[2])
+                }
+                if (regScript.test(sideB)) {
+                    result = sideB.split(/[><]/)
+                    setXxsAttack(result[2])
+                }
+                if (regScript.test(sideC)) {
+                    result = sideC.split(/[><]/)
+                    setXxsAttack(result[2])
+                }
+                setOpen(true)
                 return filteredBugs('XSS - уязвимость (регистр)')
             }
             if (sideA.includes('select') ||

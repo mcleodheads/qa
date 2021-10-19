@@ -20,17 +20,17 @@ export const FormScreen = () => {
 
     const handleSubmit = () => {
         const newData = {
-            nameTrainee,
-            surnameTrainee,
-            patronymicTrainee,
-            universityFullName,
-            instituteFullName,
-            specialityFullName,
-            competenceName,
-            dateStart,
-            dateEnd,
-            phoneNumberTrainee,
-            emailTrainee,
+            nameTrainee: nameTrainee,
+            surnameTrainee: surnameTrainee,
+            patronymicTrainee: patronymicTrainee,
+            universityFullName: universityFullName,
+            instituteFullName: instituteFullName,
+            specialityFullName: specialityFullName,
+            competenceName: competenceName,
+            dateStart: dateStart,
+            dateEnd: dateEnd,
+            phoneNumberTrainee: phoneNumberTrainee,
+            emailTrainee: emailTrainee,
         }
         if (policyCheckbox) {
             const headers = {
@@ -181,6 +181,7 @@ export const FormScreen = () => {
                                         </label>
                                         <select
                                             defaultValue={"Выберите желаемую компетенцию"}
+                                            onChange={() => {}}
                                             className={st.dropDown}
                                             >
                                             <option value="" disabled selected>
@@ -235,7 +236,7 @@ export const FormScreen = () => {
                             </div>
                         </div>
                         <div className={st.actions}>
-                            <div className={st.capcha}>
+                            <div className={st.captcha}>
 
                             </div>
                             <div className={st.privatePolicy}>
