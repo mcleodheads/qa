@@ -12,6 +12,7 @@ export const FormScreen = () => {
     const [instituteFullName, setInstituteFullName] = useState();
     const [specialityFullName, setSpecialityFullName] = useState();
     const [competenceName, setCompetenceName] = useState();
+    const [type, setType] = useState('');
     const [dateStart, setDateStart] = useState('');
     const [dateEnd, setDateEnd] = useState('');
     const [phoneNumberTrainee, setPhoneNumberTrainee] = useState('');
@@ -181,7 +182,7 @@ export const FormScreen = () => {
                                         </label>
                                         <select
                                             defaultValue={"Выберите желаемую компетенцию"}
-                                            onChange={() => {}}
+                                            onChange={(e) => setType(e.target.value)}
                                             className={st.dropDown}
                                             >
                                             <option value="" disabled selected>

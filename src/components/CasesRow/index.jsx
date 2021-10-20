@@ -3,7 +3,6 @@ import st from './casesRow.module.css'
 import classNames from "classnames/bind";
 
 export const CasesRow = ({cases}) => {
-
     const renderLoop = () => {
         let line = []
         for (let i = 0; i <= 11; i++) {

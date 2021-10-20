@@ -165,24 +165,24 @@ export const GameScreen = () => {
 
         if (isNaN(a) || isNaN(b) || isNaN(c)) {
             let result
-            if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
-                if (sideA.includes('<script>')) {
-                    result = sideA.split(/[><]/)
-                    setXxsAttack(result[2])
-                }
-                if (sideB.includes('<script>')) {
-                    result = sideB.split(/[><]/)
-                    setXxsAttack(result[2])
-                }
-                if (sideC.includes('<script>')) {
-                    result = sideC.split(/[><]/)
-                    setXxsAttack(result[2])
-                }
-                setOpen(true)
-                return filteredCases('XSS - уязвимость')
-            }
             const regScript = new RegExp('<[sS][cC][rR][iI][pP][tT]>')
             if (regScript.test(sideA) || regScript.test(sideB) || regScript.test(sideC)) {
+                if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
+                    if (sideA.includes('<script>')) {
+                        result = sideA.split(/[><]/)
+                        setXxsAttack(result[2])
+                    }
+                    if (sideB.includes('<script>')) {
+                        result = sideB.split(/[><]/)
+                        setXxsAttack(result[2])
+                    }
+                    if (sideC.includes('<script>')) {
+                        result = sideC.split(/[><]/)
+                        setXxsAttack(result[2])
+                    }
+                    setOpen(true)
+                    return filteredCases('XSS - уязвимость')
+                }
                 if (regScript.test(sideA)) {
                     result = sideA.split(/[><]/)
                     setXxsAttack(result[2])
