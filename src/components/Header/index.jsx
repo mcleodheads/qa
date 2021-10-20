@@ -1,9 +1,8 @@
 import React from 'react';
-
-import {FORM_ROUTE, GAME_ROUTE, HOME_ROUTE, RESULTS_ROUTE} from "../../router/paths";
-
 import {useState, useEffect} from "react";
 import {Link, useLocation} from "react-router-dom";
+
+import {FORM_ROUTE, GAME_ROUTE, HOME_ROUTE, RESULTS_ROUTE} from "../../router/paths";
 
 import st from './header.module.css'
 

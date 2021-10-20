@@ -1,8 +1,7 @@
 import React from 'react';
+import {useHistory} from "react-router-dom";
 
 import {GAME_ROUTE} from "../../router/paths";
-
-import {useHistory} from "react-router-dom";
 
 import st from './homeScreen.module.css'
 

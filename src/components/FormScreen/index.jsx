@@ -4,9 +4,9 @@ import axios from "axios";
 import {useState} from "react";
 
 import {GameInput} from "../GameInput";
+import {data} from "./data";
 
 import st from './formScreen.module.css'
-import {data} from "./data";
 
 export const FormScreen = () => {
     const [nameTrainee, setNameTrainee] = useState('');

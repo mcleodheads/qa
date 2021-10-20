@@ -1,11 +1,10 @@
 import React from 'react';
+import {useState, useEffect} from "react";
+import {useHistory} from "react-router-dom";
 
 import {GameInput} from '../GameInput'
 import {BugsRow} from '../BugsRow'
 import {CasesRow} from '../CasesRow'
-
-import {useState, useEffect} from "react";
-import {useHistory} from "react-router-dom";
 
 import {FORM_ROUTE, RESULTS_ROUTE} from "../../router/paths";
 

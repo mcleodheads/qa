@@ -1,9 +1,9 @@
 import React from 'react';
+import {useHistory} from "react-router-dom";
 
 import {FORM_ROUTE} from "../../router/paths";
 import {dataBugs, dataCases} from "./data";
 
-import {useHistory} from "react-router-dom";
 
 import st from './resultsScreen.module.css'
 

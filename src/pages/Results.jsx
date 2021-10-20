@@ -1,4 +1,5 @@
 import React from 'react';
+
 import {ResultsScreen} from "../components/ResultsScreen/index";
 
 const Results = () => {
