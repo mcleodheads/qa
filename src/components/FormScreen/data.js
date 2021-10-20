@@ -16,3 +16,64 @@ export const data = [
             студента 3 курса были приняты на работу.`,
     },
 ]
+
+export const selectOptions = [
+    {
+        key: '1',
+        text: 'Тестирование',
+    },
+    {
+        key: '2',
+        text: 'Разработка',
+    },
+    {
+        key: '3',
+        text: 'Сопровождение',
+    },
+    {
+        key: '4',
+        text: 'Дизайн',
+    },
+    {
+        key: '5',
+        text: 'Системное администрирование',
+    },
+    {
+        key: '6',
+        text: 'Системный анализ',
+    },
+]
+
+export const devOptions = [
+    {
+      key: '1',
+      text: 'Java',
+    },
+    {
+        key: '2',
+        text: 'AngularJS',
+    },
+    {
+        key: '3',
+        text: 'PHP',
+    },
+    {
+        key: '4',
+        text: 'ReactJS',
+    },
+    {
+        key: '5',
+        text: '.NET',
+    },
+]
+
+export const qaOptions = [
+    {
+        key: '1',
+        text: 'Ручное тестирование',
+    },
+    {
+        key: '2',
+        text: 'Автотетсы',
+    },
+]

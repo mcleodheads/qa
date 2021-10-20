@@ -4,7 +4,7 @@ import axios from "axios";
 import {useState} from "react";
 
 import {GameInput} from "../GameInput";
-import {data} from "./data";
+import {data, devOptions, qaOptions, selectOptions} from "./data";
 
 import st from './formScreen.module.css'
 
@@ -56,17 +56,16 @@ export const FormScreen = () => {
         const list = []
         if (competenceName === 'Разработка') {
             list.push(
-                <option key={'Java'} value="Java">Java</option>,
-                <option key={'AngularJS'} value="AngularJS">AngularJS</option>,
-                <option key={'PHP'} value="PHP">PHP</option>,
-                <option key={'ReactJS'} value="ReactJS">ReactJS</option>,
-                <option key={'.NET'} value=".NET">.NET</option>,
-                )
+                devOptions.map(({key, text}) => (
+                    <option key={key} value={text}>{text}</option>
+                ))
+            )
         }
         if (competenceName === 'Тестирование') {
             list.push(
-                <option key={'Ручное тестирование'} value="Ручное тестирование">Ручное тестирование</option>,
-                <option key={'Автотесты'} value="Автотесты">Автотесты</option>,
+                qaOptions.map(({key, text}) => (
+                    <option key={key} value={text}>{text}</option>
+                ))
             )
         }
         return list
@@ -152,24 +151,13 @@ export const FormScreen = () => {
                                             <option value="" disabled selected>
                                                 Выберите желаемое направление
                                             </option>
-                                            <option value="Тестирование">
-                                                Тестирование
-                                            </option>
-                                            <option value="Разработка">
-                                                Разработка
-                                            </option>
-                                            <option value="Сопровождение">
-                                                Сопровождение
-                                            </option>
-                                            <option value="Дизайн">
-                                                Дизайн
-                                            </option>
-                                            <option value="Системное администрирование">
-                                                Системное администрирование
-                                            </option>
-                                            <option value="Системный анализ">
-                                                Системный анализ
-                                            </option>
+                                            {
+                                                selectOptions.map(({key, text}) => (
+                                                    <option key={key} value={text}>
+                                                        {text}
+                                                    </option>
+                                                ))
+                                            }
                                         </select>
                                     </div>
                                     <div className={st.jobsInput}>
@@ -182,7 +170,7 @@ export const FormScreen = () => {
                                             defaultValue={"Выберите желаемую компетенцию"}
                                             onChange={(e) => setType(e.target.value)}
                                             className={st.dropDown}
-                                            >
+                                        >
                                             <option value="" disabled selected>
                                                 Выберите желаемую компетенцию
                                             </option>
@@ -243,7 +231,8 @@ export const FormScreen = () => {
                                     Политика персональных данных<span className={st.star}>*</span>
                                 </label>
                                 <div>
-                                    <input type="checkbox" defaultChecked={policyCheckbox} onChange={(e) => setPolicyCheckbox(e.target.checked)}/>
+                                    <input type="checkbox" defaultChecked={policyCheckbox}
+                                           onChange={(e) => setPolicyCheckbox(e.target.checked)}/>
                                     <span>С <a href='/#' className={st.policy}>политикой</a> в отношении обработки персональных данных ознакомлен</span>
                                 </div>
                             </div>

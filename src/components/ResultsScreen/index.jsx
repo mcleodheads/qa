@@ -4,7 +4,6 @@ import {useHistory} from "react-router-dom";
 import {FORM_ROUTE} from "../../router/paths";
 import {dataBugs, dataCases} from "./data";
 
-
 import st from './resultsScreen.module.css'
 
 export const ResultsScreen = () => {
