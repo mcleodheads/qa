@@ -1,7 +1,10 @@
 import React from 'react';
-import st from './homeScreen.module.css'
+
 import {GAME_ROUTE} from "../../router/paths";
+
 import {useHistory} from "react-router-dom";
+
+import st from './homeScreen.module.css'
 
 export const HomeScreen = () => {
     const history = useHistory()

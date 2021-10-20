@@ -1,6 +1,8 @@
 import React from 'react';
-import st from './casesRow.module.css'
+
 import classNames from "classnames/bind";
+
+import st from './casesRow.module.css'
 
 export const CasesRow = ({cases}) => {
     const renderLoop = () => {

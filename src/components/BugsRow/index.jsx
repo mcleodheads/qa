@@ -1,6 +1,8 @@
 import React from 'react';
-import st from './bugsRow.module.css'
+
 import classNames from "classnames/bind";
+
+import st from './bugsRow.module.css'
 
 export const BugsRow = ({bugs}) => {
 
@@ -25,5 +27,3 @@ export const BugsRow = ({bugs}) => {
         </div>
     );
 };
-
-// export default BugsRow;

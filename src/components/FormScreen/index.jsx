@@ -1,8 +1,12 @@
-import * as React from 'react';
-import {useState} from "react";
-import st from './formScreen.module.css'
-import {GameInput} from "../GameInput";
+import React from 'react';
 import axios from "axios";
+
+import {useState} from "react";
+
+import {GameInput} from "../GameInput";
+
+import st from './formScreen.module.css'
+import {data} from "./data";
 
 export const FormScreen = () => {
     const [nameTrainee, setNameTrainee] = useState('');
@@ -30,6 +34,7 @@ export const FormScreen = () => {
             competenceName: competenceName,
             dateStart: dateStart,
             dateEnd: dateEnd,
+            type: type,
             phoneNumberTrainee: phoneNumberTrainee,
             emailTrainee: emailTrainee,
         }
@@ -71,20 +76,13 @@ export const FormScreen = () => {
         <div className={st.wrapper}>
             <div className={st.container}>
                 <div className={st.description}>
-                    <div className={st.descBlock}>
-                        ММТР приглашает студентов IT-специальностей средних специальных и высших учебных заведений
-                        Костромы и других городов пройти учебную практику, а также выполнить подготовку дипломного
-                        проекта в нашей компании. Вы будете участвовать в реальных проектах под руководством наших
-                        ведущих разработчиков и тестировщиков. График работы на практике гибкий и позволяет совмещать
-                        подготовку к экзаменам, учебу и занятость в офисе.
-                    </div>
-                    <div className={st.descBlock}>
-                        В 2017-2018 учебном году в компании ММТР прошли практику 60 студентов 2-4 курсов нескольких
-                        факультетов и специальностей КГУ (Физмат, ИАСТ, Бизнес-информатика), Костромского
-                        политехнического колледжа, Костромского энергетического техникума имени Ф. В. Чижова, а также 1
-                        студент из Ивановского энергетического университета (Прикладная информатика). 8 выпускников и 3
-                        студента 3 курса были приняты на работу.
-                    </div>
+                    {
+                        data.map(({key, text}) => (
+                            <div key={key} className={st.descBlock}>
+                                {text}
+                            </div>
+                        ))
+                    }
                 </div>
                 <div className={st.formWrapper}>
                     <div className={st.header}>

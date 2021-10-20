@@ -1,4 +1,5 @@
 import React from 'react';
+
 import st from './gameInput.module.css'
 
 export const GameInput = (props) => {

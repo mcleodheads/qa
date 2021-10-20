@@ -1,11 +1,15 @@
-import * as React from 'react';
-import {useState, useEffect} from "react";
-import st from './gameScreen.module.css'
+import React from 'react';
+
 import {GameInput} from '../GameInput'
 import {BugsRow} from '../BugsRow'
 import {CasesRow} from '../CasesRow'
+
+import {useState, useEffect} from "react";
 import {useHistory} from "react-router-dom";
+
 import {FORM_ROUTE, RESULTS_ROUTE} from "../../router/paths";
+
+import st from './gameScreen.module.css'
 import equilateralTr from '../../assets/img/Triangles/equilateralTr.png'
 import isoscelesTr from '../../assets/img/Triangles/isoscelesTr.png'
 import rightTr from '../../assets/img/Triangles/rightTr.png'
