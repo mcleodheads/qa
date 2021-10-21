@@ -34,7 +34,7 @@ export const FormScreen = () => {
             competenceName: competenceName,
             dateStart: dateStart,
             dateEnd: dateEnd,
-            type: type,
+            description: type,
             phoneNumberTrainee: phoneNumberTrainee,
             emailTrainee: emailTrainee,
         }
@@ -47,7 +47,7 @@ export const FormScreen = () => {
                     headers: headers,
                 }
             )
-                .then((response) => console.log(response))
+                .then(() => console.log('Заявка была успешно отправлена'))
                 .catch((error) => console.log(error))
         }
     }
