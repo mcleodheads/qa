@@ -67,6 +67,8 @@ export const GameScreen = () => {
         const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2);
         const side = Math.pow(c, 2).toFixed(2)
         const numberExp = new RegExp('^[0-9]+$')
+        const floatExp = new RegExp('[+-]?([0-9]*[!.])?[0-9]+')
+        console.log(floatExp.test(sideA))
 
         if (tr[0].length === 0 && tr[1].length === 0 && tr[2].length === 0) {
             setData({
@@ -84,14 +86,12 @@ export const GameScreen = () => {
             setVisible(true)
             return filteredCases('Не все поля заданы')
         }
-//----------------------------------------------------------------------------------------------------
+
         if (numberExp.test(sideA) && numberExp.test(sideB) && numberExp.test(sideC)) {
             if (sideA.length >= 10 || sideB.length >= 10 || sideC.length >= 10) {
                 filteredCases('Большие числа')
             }
-            if (sideA.includes('.') || sideB.includes('.') || sideC.includes('.')) {
-                return filteredBugs('Нецелые числа')
-            }
+
             if (a === 0 || b === 0 || c === 0) {
                 filteredBugs('Треугольник со сторонами 0')
                 setData({
@@ -156,7 +156,6 @@ export const GameScreen = () => {
                 return filteredCases('Остроугольный треугольник')
             }
         }
-//----------------------------------------------------------------------------------------------------
         if ((sideA.length !== 0 || sideB.length !== 0) && sideC.length === 0) {
             setData({
                 error: 'Это не треугольник',
@@ -215,6 +214,9 @@ export const GameScreen = () => {
         }
         if (a.toString.length !== 0 || b.toString.length !== 0 || c.toString.length !== 0) {
             setVisible(false)
+            if (sideA.includes('.')) {
+                return filteredBugs('Нецелые числа')
+            }
             return filteredCases('Строки в полях')
         }
     }
