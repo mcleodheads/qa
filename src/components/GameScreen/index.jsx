@@ -66,6 +66,7 @@ export const GameScreen = () => {
         const c = parseInt(tr[2])
         const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2);
         const side = Math.pow(c, 2).toFixed(2)
+        const numberExp = new RegExp('^[0-9]+$')
 
         if (tr[0].length === 0 && tr[1].length === 0 && tr[2].length === 0) {
             setData({
@@ -83,7 +84,8 @@ export const GameScreen = () => {
             setVisible(true)
             return filteredCases('Не все поля заданы')
         }
-        if (!isNaN(a) && !isNaN(b) && !isNaN(c)) {
+//----------------------------------------------------------------------------------------------------
+        if (numberExp.test(sideA) && numberExp.test(sideB) && numberExp.test(sideC)) {
             if (sideA.length >= 10 || sideB.length >= 10 || sideC.length >= 10) {
                 filteredCases('Большие числа')
             }
@@ -154,7 +156,7 @@ export const GameScreen = () => {
                 return filteredCases('Остроугольный треугольник')
             }
         }
-
+//----------------------------------------------------------------------------------------------------
         if ((sideA.length !== 0 || sideB.length !== 0) && sideC.length === 0) {
             setData({
                 error: 'Это не треугольник',
@@ -169,6 +171,9 @@ export const GameScreen = () => {
         if (isNaN(a) || isNaN(b) || isNaN(c)) {
             let result
             const regScript = new RegExp('<[sS][cC][rR][iI][pP][tT]>')
+            const selectReg = /select/i
+            const whereReg = /where/i
+            const orReg = /or/i
             if (regScript.test(sideA) || regScript.test(sideB) || regScript.test(sideC)) {
                 if (sideA.includes('<script>') || sideB.includes('<script>') || sideC.includes('<script>')) {
                     if (sideA.includes('<script>')) {
@@ -201,15 +206,10 @@ export const GameScreen = () => {
                 setOpen(true)
                 return filteredBugs('XSS - уязвимость (регистр)')
             }
-            if (sideA.includes('select') ||
-                sideA.includes('or') ||
-                sideA.includes('where') ||
-                sideB.includes('select') ||
-                sideB.includes('or') ||
-                sideB.includes('where') ||
-                sideC.includes('select') ||
-                sideC.includes('or') ||
-                sideC.includes('where')) {
+            if (
+                selectReg.test(sideA) || orReg.test(sideA) || whereReg.test(sideA) ||
+                selectReg.test(sideB) || orReg.test(sideB) || whereReg.test(sideB) ||
+                selectReg.test(sideC) || orReg.test(sideC) || whereReg.test(sideC)) {
                 return filteredCases('SQL-инъекция')
             }
         }
@@ -388,4 +388,3 @@ export const GameScreen = () => {
         </div>
     );
 };
-
