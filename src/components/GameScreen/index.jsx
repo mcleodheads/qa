@@ -67,8 +67,6 @@ export const GameScreen = () => {
         const sum = (Math.pow(a, 2) + Math.pow(b, 2)).toFixed(2);
         const side = Math.pow(c, 2).toFixed(2)
         const numberExp = new RegExp('^[0-9]+$')
-        const floatExp = new RegExp('[+-]?([0-9]*[!.])?[0-9]+')
-        console.log(floatExp.test(sideA))
 
         if (tr[0].length === 0 && tr[1].length === 0 && tr[2].length === 0) {
             setData({
@@ -93,20 +91,18 @@ export const GameScreen = () => {
             }
 
             if (a === 0 || b === 0 || c === 0) {
-                filteredBugs('Треугольник со сторонами 0')
                 setData({
                     header: 'Равносторонний треугольник',
                     sides: {sideA, sideB, sideC},
                     img: equilateralTr
                 })
-                setVisible(true)
+                return filteredBugs('Треугольник со сторонами 0')
             }
             if (a + b < c) {
                 setInvalidForm(false)
                 setVisible(false)
                 return filteredCases('Не выполнились условия треугольника')
             }
-
             if (a === b && a === c) {
                 setData({
                     header: 'Равносторонний треугольник',
